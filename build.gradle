@@ -1,14 +1,18 @@
 plugins {
-    id 'java'
     id 'application'
     id 'org.springframework.boot' version '1.5.9.RELEASE'
 }
 
-sourceCompatibility = 1.8
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+}
 
 mainClassName = 'za.co.entelect.bootcamp.Application'
 
 dependencies {
+    compile project(':domain')
     compile 'org.springframework.boot:spring-boot-starter'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
