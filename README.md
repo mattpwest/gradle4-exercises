@@ -22,8 +22,13 @@ about superheroes belonging to different comic book publishers, but
 unfortunately the code repository does not seem to include any way to build
 and run the code... let's use Gradle to get it building and running.
 
-The `gradle init` task can be used to add Gradle to a project, but we don't
-know the details of calling, so let's get some help first:
+You can always see available tasks in a Gradle project with `gradle tasks`.
+The list of available tasks will change as you add and remove plugins, but many
+of the tasks are built into Gradle's core.
+
+One of the core tasks is `gradle init`, which can be used to add Gradle to a
+project, but we don't know the details of calling, so let's get some help
+first:
 
 ```
 gradle help --task init
@@ -57,7 +62,6 @@ dependencies {
 }
 ```
 
-
 Finally add the Spring Boot Gradle plugin to your `plugins` section:
 
 ```
@@ -68,6 +72,7 @@ plugins {
 ```
 
 Now try to build the application with `gradle build` (or `./gradlew build`).
+
 You'll get some compile errors that essentially amount to the application
 not being configured to use Java 8. Fix it by adding the following somewhere
 in your `build.gradle`, then try again:
@@ -82,10 +87,6 @@ with: `java -jar build/libs/gradle4-exercises.jar`.
 Since this is a Spring Boot application and you have the Boot plugin in your
 build configuration you can also run it with:
 `./gradlew bootRun`.
-
-You can always see available tasks in a Gradle project with `./gradlew tasks`.
-The list of available tasks will change as you add and remove plugins, but many
-of the tasks are built into Gradle's core.
 
 Solution branch: `solution1`.
 
