@@ -90,4 +90,54 @@ build configuration you can also run it with:
 
 Solution branch: `solution1`.
 
-Next exercise branch: `exercise2`. 
+Next exercise branch: `exercise2`.
+
+## Exercise 2
+
+Let's convert this project into a multi-project build, which is more like the
+multi-module builds you might be used to from Maven. For the sake of keeping
+the exercise short we will only split the domain out into a separate module.
+
+First create a subfolder `domain` in your project, then copy over your `src`
+folder into `domain/src`, then delete everything in `domain/src` except for
+the code in the `za.co.entelect.bootcamp.domain`. Now delete the same package
+from the main project's `src` folder.
+
+To turn the `domain` folder into a Gradle module, add a file called
+`domain.gradle` into it. By default modules will have a build script called
+`build.gradle`, however in a project like this where we might end up with a
+handful of modules it's better to change the name to match the module, so
+that when you have a `.gradle` file open in your IDE you can tell which
+module's build script you are looking at.
+
+Finally edit the `settings.gradle` in the root of your project, adding the
+following line to tell Gradle about the domain sub-project:
+
+```
+include 'domain'
+```
+
+If you run `./gradlew projects` at this point you'll see that Gradle has
+been correctly configured with a sub-project, but trying to run
+`./gradlew clean build` will result in a large number of errors when trying
+to compile the source in our main module, due to missing the source in the
+child module...
+
+To fix this, add a dependency in your root module:
+
+```
+compile project(':domain')
+```
+
+We also need to tell Gradle that this domain module is a java project,
+which you can do in one of two ways:
+ * Either copy the plugins section from the `build.gradle` into
+ `domain.gradle` removing everything except the java plugin.
+ * Add a `allprojects {}` section to your `build.gradle` and move the
+ java plugin declaration in there... however, not that you can't use the
+ newer `plugins {}` block declaration, you have to use the older style
+ `apply plugin: 'java'` syntax.
+ 
+At this point the project should build... The last change I would
+recommend is moving your `sourceCompatibility = 1.8` line into
+`allprojects {}` so it gets applied to all modules.
