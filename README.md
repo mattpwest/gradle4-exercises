@@ -134,7 +134,7 @@ which you can do in one of two ways:
  * Either copy the plugins section from the `build.gradle` into
  `domain.gradle` removing everything except the java plugin.
  * Add a `allprojects {}` section to your `build.gradle` and move the
- java plugin declaration in there... however, not that you can't use the
+ java plugin declaration in there... however, note that you can't use the
  newer `plugins {}` block declaration, you have to use the older style
  `apply plugin: 'java'` syntax.
  
