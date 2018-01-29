@@ -100,7 +100,7 @@ the exercise short we will only split the domain out into a separate module.
 
 First create a subfolder `domain` in your project, then copy over your `src`
 folder into `domain/src`, then delete everything in `domain/src` except for
-the code in the `za.co.entelect.bootcamp.domain`. Now delete the same package
+the code in the `za.co.entelect.bootcamp.domain`. Delete the file `domain/src/test/java/za/co/entelect/bootcamp/springmvc/ApplicationTests.java`. Now delete the same package
 from the main project's `src` folder.
 
 To turn the `domain` folder into a Gradle module, add a file called
